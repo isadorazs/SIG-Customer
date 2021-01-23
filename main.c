@@ -11,8 +11,8 @@ int main(void)
     printf("1 - Cadastrar Cliente \n2 - Editar Cliente \n3 - Pesquisar Cliente \n4 - Apagar Cliente\n5 Sair \n");
     scanf("%d", &escolha);
     switch (escolha) {
+void MenuCad(void);
     case 1:
-        
         printf("Digite o nome do seu cliente\n");
         break;
     case 2:
