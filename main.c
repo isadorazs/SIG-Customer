@@ -6,29 +6,29 @@ int main(void)
 {
     int escolha;
     inicio:
-    system("cls");
+    
     printf("Digite o que você deseja fazer:\n");
     printf("1 - Cadastrar Cliente \n2 - Editar Cliente \n3 - Pesquisar Cliente \n4 - Apagar Cliente\n5 Sair \n");
     scanf("%d", &escolha);
     switch (escolha) {
     case 1:
-        system("cls");
+        
         printf("Digite o nome do seu cliente\n");
         break;
     case 2:
-        system("cls");
+        
         printf("Qual Cliente você deseja editar?\n");
         break;
     case 3:
-        system("cls");
+        
         printf("Digite o nome do cliente que você deseja encontrar\n");
         break;
     case 4:
-        system("cls");
+        
         printf("Qual cliente você deseja apagar?\n");
         break;
     case 5:
-        system("cls");
+        
         printf("Sessão finalizada\n");
         break;
     default:
