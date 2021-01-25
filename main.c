@@ -22,22 +22,23 @@ int main(void)
     switch (escolha) {
 void MenuCad(void);
     case 1:
+system ("clear");
         printf("Digite o nome do seu cliente\n");
         break;
     case 2:
-        
+system ("clear");
         printf("Qual Cliente você deseja editar?\n");
         break;
     case 3:
-        
+system ("clear");
         printf("Digite o nome do cliente que você deseja encontrar\n");
         break;
     case 4:
-        
+system ("clear");
         printf("Qual cliente você deseja apagar?\n");
         break;
     case 5:
-        
+
         printf("Sessão finalizada\n");
         break;
     default:
