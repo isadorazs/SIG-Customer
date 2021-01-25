@@ -5,7 +5,7 @@
 ///                  Disciplina DCT1106 -- Programação                      ///
 ///                  Projeto Sistema de Cadastro de Clientes                     ///
 ///                Developed by  Isadora Stéfany e Rafael Silva - Jan, 2021                    ///
-///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
 #include <stdlib.h>
