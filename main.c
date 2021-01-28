@@ -20,7 +20,7 @@ void menuEstoque(void);
 void telaCadastrarCliente(void);
 void telaCadVenda(void);
 void telaCadPag(void);
-
+void telaRegProd(void);
 
 ///
 /// Programa Principal
@@ -33,7 +33,8 @@ int main(void) {
     menuEstoque();
     telaCadastrarCliente();
     telaCadVenda();
-    telaCadPag;
+    telaCadPag();
+    telaRegProd();
     return 0;
 }
 
@@ -150,7 +151,7 @@ void menuEstoque(void) {
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           1. Cadastrar um novo produto                                ///\n");
-	printf("///           2. Pesquisar um produto no esto                             ///\n");
+	printf("///           2. Pesquisar um produto no estoque                          ///\n");
 	printf("///           3. Atualizar a quantidade de um produto                     ///\n");
 	printf("///           4. Registrar falta de um produto                            ///\n");
 	printf("///           0. Voltar ao menu principal                                 ///\n");
@@ -223,6 +224,25 @@ void telaCadPag(void) {
 	printf("///           A vista ou a prazo:                                         ///\n");
 	printf("///           Cliente pagante:                                            ///\n");
 	printf("///           Quantidade paga:                                            ///\n");
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}
+
+void telaRegProd(void) {
+    system("clear");
+	printf("\n");
+  printf ("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = = Registrar um novo produto = = = = = = = =   ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Qual produto chegou:                                        ///\n");
+	printf("///           Quantas unidades:                                           ///\n");
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
