@@ -19,6 +19,7 @@ void menuPagamento(void);
 void menuEstoque(void);
 void telaCadastrarCliente(void);
 void telaCadVenda(void);
+void telaCadPag(void);
 
 
 ///
@@ -32,6 +33,7 @@ int main(void) {
     menuEstoque();
     telaCadastrarCliente();
     telaCadVenda();
+    telaCadPag;
     return 0;
 }
 
@@ -199,6 +201,28 @@ void telaCadVenda(void) {
 	printf("///           CPF do cliente:                                             ///\n");
 	printf("///           Preço do produto:                                           ///\n");
 	printf("///           Data de venda:                                              ///\n");
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}
+
+void telaCadPag(void) {
+    system("clear");
+	printf("\n");
+  printf ("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = = Registrar transação = = = = = = = =         ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Total a pagar:                                              ///\n");
+	printf("///           Forma de pagamento:                                         ///\n");
+	printf("///           A vista ou a prazo:                                         ///\n");
+	printf("///           Cliente pagante:                                            ///\n");
+	printf("///           Quantidade paga:                                            ///\n");
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
