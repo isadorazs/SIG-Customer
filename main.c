@@ -243,7 +243,7 @@ void telaRegProd(void) {
 	printf("///                                                                       ///\n");
 	printf("///           Qual produto chegou:                                        ///\n");
 	printf("///           Quantas unidades:                                           ///\n");
-	printf("///                                                                       ///\n");
+	printf("///           Qual o preço:                                               ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
