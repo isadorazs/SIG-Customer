@@ -3,48 +3,183 @@
 ///                 Centro de Ensino Superior do Seridó                     ///
 ///               Departamento de Computação e Tecnologia                   ///
 ///                  Disciplina DCT1106 -- Programação                      ///
-///                  Projeto Sistema de Cadastro de Clientes                     ///
-///                Developed by  Isadora Stéfany e Rafael Silva - Jan, 2021                    ///
+///                  Projeto Sistema de Cadastro de Clientes                ///
+///                Developed by  Isadora Stéfany e Rafael Silva - Jan, 2021 ///
 //////////////////////////////////////////////////////////////////////////////
-
 #include <stdio.h>
 #include <stdlib.h>
 
-void MenuInicial(void);
-int main(void)
-{
-    int escolha;
-    inicio:
-    
-    printf("Digite o que você deseja fazer:\n");
-    printf("1 - Cadastrar Cliente \n2 - Editar Cliente \n3 - Pesquisar Cliente \n4 - Apagar Cliente\n5 Sair \n");
-    scanf("%d", &escolha);
-    switch (escolha) {
-void MenuCad(void);
-    case 1:
-system ("clear");
-        printf("Digite o nome do seu cliente\n");
-        break;
-    case 2:
-system ("clear");
-        printf("Qual Cliente você deseja editar?\n");
-        break;
-    case 3:
-system ("clear");
-        printf("Digite o nome do cliente que você deseja encontrar\n");
-        break;
-    case 4:
-system ("clear");
-        printf("Qual cliente você deseja apagar?\n");
-        break;
-    case 5:
+/// 
+/// Assinaturas das funções
+///
+void menuPrincipal(void);
+void menuCliente(void);
+void menuVendas(void);
+void menuPagamento(void);
+void menuEstoque(void);
+void telaCadastrarCliente(void);
 
-        printf("Sessão finalizada\n");
-        break;
-    default:
-        printf("Você deve escolher uma opcão válida\n");
-        printf("Voltando ao menu principal\n");
-        system("pause");
-        goto inicio;
-    }
+
+///
+/// Programa Principal
+///
+int main(void) {
+    menuPrincipal();
+    menuCliente();
+    menuVendas();
+    menuPagamento();
+    menuEstoque();
+    telaCadastrarCliente();
+    return 0;
+}
+
+
+void menuPrincipal(void) {
+    system("clear");
+	printf("\n");
+	
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = =  Menu Principal = = = = = = = =             ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           1. Módulo Cliente                                           ///\n");
+  printf("///           2. Módulo Vendas                                            ///\n");
+  printf("///           3. Módulo Pagamentos                                        ///\n");
+	printf("///           4. Módulo Estoque                                           ///\n");
+	printf("///           0. Encerrar o programa                                      ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Escolha a opção desejada:                                   ///\n");
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}
+
+
+
+
+
+void menuCliente(void) {
+    system("clear");
+	printf("\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = = =  Menu Cliente = = = = = = = = =           ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           1. Cadastrar um Cliente                                     ///\n");
+	printf("///           2. Pesquisar um Cliente                                     ///\n");
+	printf("///           3. Atualizar um Cliente                                     ///\n");
+	printf("///           4. Apagar um Cliente                                        ///\n");
+	printf("///           0. Voltar ao menu principal                                 ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Escolha a opção desejada:                                   ///\n");
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}
+
+
+void menuVendas(void) {
+    system("clear");
+	printf("\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = =   Menu Vendas  = = = = = = = =              ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           1. Registrar uma nova venda                                 ///\n");
+	printf("///           2. Pesquisar um produto                                     ///\n");
+	printf("///           3. Registrar recebimento de um produto                      ///\n");
+	printf("///           0. Voltar ao menu anterior                                  ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Escolha a opção desejada:                                   ///\n");
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}
+
+
+void menuPagamento(void) {
+    system("clear");
+	printf("\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = = =  Menu Pagamentos = = = = = = = = =        ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           1. Cadastrar uma nova transação                             ///\n");
+	printf("///           2. Pesquisar os dados de uma transação                      ///\n");
+	printf("///           3. Atualizar o cadastro de pagamento                        ///\n");
+	printf("///           4. Excluir um pagamento                                     ///\n");
+	printf("///           0. Voltar ao menu anterior                                  ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Escolha a opção desejada:                                   ///\n");
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}
+
+void menuEstoque(void) {
+    system("clear");
+	printf("\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = = =  Menu Estoque = = = = = = = = =           ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           1. Cadastrar um novo produto                                ///\n");
+	printf("///           2. Pesquisar um produto no esto                             ///\n");
+	printf("///           3. Atualizar a quantidade de um produto                     ///\n");
+	printf("///           4. Registrar falta de um produto                            ///\n");
+	printf("///           0. Voltar ao menu principal                                 ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Escolha a opção desejada:                                   ///\n");
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}
+
+
+
+void telaCadastrarCliente(void) {
+    system("clear");
+	printf("\n");
+  printf ("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = = Cadastrar Cliente = = = = = = = =           ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Nome:                                                       ///\n");
+	printf("///           CPF:                                                        ///\n");
+	printf("///           Endereço:                                                   ///\n");
+	printf("///           Data de Nascimento:                                         ///\n");
+	printf("///           Telefone:                                                   ///\n");
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
 }
