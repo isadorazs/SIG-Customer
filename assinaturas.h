@@ -13,4 +13,3 @@ void telaRegProd(void);
 void telaBuscarCliente(void);
 void telaExcCliente(void);
 void telaEditCliente(void);
-void telaExcProd(void);

@@ -12,6 +12,7 @@
 ///
 /// Programa Principal
 ///
+ 
 int main(void) {
     menuPrincipal();
     menuCliente();
@@ -24,8 +25,7 @@ int main(void) {
     telaRegProd();
 	telaBuscarCliente();
 	telaExcCliente();
-	telaEditCliente();
-	telaExcProd();
+	telaEditCliente();;
     return 0;
 }
 
