@@ -296,3 +296,22 @@ void telaPesquisarProd(void) {
 	getchar();
 }
 
+
+void telaAtualProd(void) {
+    system("clear || cls");
+	printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///           = = = = = = = =  Pesquisar produto = = = = = = =            ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Digite o nome do produto a ser atualizado                   ///\n");
+	printf("///           Quantas unidades a mais?                                    ///\n");
+  printf("///           Quantas unidades a menos?                                   ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}

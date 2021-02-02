@@ -27,6 +27,7 @@ int main(void) {
 	telaExcCliente();
 	telaEditCliente();
   telaPesquisarProd();
+  telaAtualProd();
     return 0;
 }
 
