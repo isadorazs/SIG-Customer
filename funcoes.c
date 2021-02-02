@@ -277,3 +277,22 @@ void telaEditCliente(void) {
 	getchar();
 }
 
+void telaPesquisarProd(void) {
+    system("clear || cls");
+	printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///           = = = = = = = =  Pesquisar produto = = = = = = =            ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Qual Produto você deseja encontrar?                         ///\n");
+	printf("///                                                                     ///\n");
+  printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}
+

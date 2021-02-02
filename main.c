@@ -25,7 +25,8 @@ int main(void) {
     telaRegProd();
 	telaBuscarCliente();
 	telaExcCliente();
-	telaEditCliente();;
+	telaEditCliente();
+  telaPesquisarProd();
     return 0;
 }
 
