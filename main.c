@@ -14,21 +14,12 @@
 ///
  
 int main(void) {
-    menuPrincipal();
-    menuCliente();
-    menuVendas();
-    menuPagamento();
-    menuEstoque();
-    telaCadastrarCliente();
-    telaCadVenda();
-    telaCadPag();
-    telaRegProd();
-	telaBuscarCliente();
-	telaExcCliente();
-	telaEditCliente();
-  telaPesquisarProd();
-  telaAtualProd();
-    return 0;
+	char opcao;
+  opcao = menuPrincipal();
+  opcao = menuCliente();
+  opcao = menuVendas();
+  opcao = menuPagamento();
+  opcao = menuEstoque();
+  telaCadastrarCliente();
+  return 0;
 }
-
-
