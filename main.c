@@ -15,6 +15,31 @@
  
 int main(void) {
 	char opcao;
+  
+  do{
+    opcao = menuPrincipal();
+    switch (opcao){
+      case '1':
+        menuCliente();
+        break;
+      case '2':
+        menuVendas();
+        break;
+      case '3':
+        menuPagamento();
+        break;
+      case '4':
+        menuEstoque();
+        break;
+    }
+
+  }while(opcao != '0');
+  
+  
+  
+  
+  
+  
   opcao = menuPrincipal();
   opcao = menuCliente();
   opcao = menuVendas();
