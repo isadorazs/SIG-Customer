@@ -15,7 +15,7 @@
  
 int main(void) {
 	char opcao;
-  
+
   do{
     opcao = menuPrincipal();
     switch (opcao){
@@ -34,17 +34,6 @@ int main(void) {
     }
 
   }while(opcao != '0');
-  
-  
-  
-  
-  
-  
-  opcao = menuPrincipal();
-  opcao = menuCliente();
-  opcao = menuVendas();
-  opcao = menuPagamento();
-  opcao = menuEstoque();
-  telaCadastrarCliente();
+   
   return 0;
 }
