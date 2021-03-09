@@ -1,2 +1,0 @@
-language = "c"
-run = "clang-7 -pthread -lm main.c assinaturas.h funcoes.c && ./main"
