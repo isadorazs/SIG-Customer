@@ -1,6 +1,6 @@
 #include "assinaturas.h"
 
-void menuPrincipal(void) {
+char menuPrincipal(void) {
 	char op;
     system("clear || cls");
 	printf("\n");
@@ -17,7 +17,7 @@ void menuPrincipal(void) {
 	printf("///           0. Encerrar o programa                                      ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", op);
+	scanf("%c", &op);
 	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
@@ -25,10 +25,11 @@ void menuPrincipal(void) {
 	printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
+  return op;
 }
 
 
-void menuCliente(void) {
+char menuCliente(void) {
 	char op;
     system("clear || cls");
 	printf("\n");
@@ -45,7 +46,7 @@ void menuCliente(void) {
 	printf("///           0. Voltar ao menu principal                                 ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", op);
+	scanf("%c", &op);
 	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
@@ -53,10 +54,11 @@ void menuCliente(void) {
 	printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
+    return op;
 }
 
 
-void menuVendas(void) {
+char menuVendas(void) {
 	char op;
     system("clear || cls");
 	printf("\n");
@@ -72,7 +74,7 @@ void menuVendas(void) {
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", op);
+	scanf("%c", &op);
 	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
@@ -80,10 +82,11 @@ void menuVendas(void) {
 	printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
+    return op;
 }
 
 
-void menuPagamento(void) {
+char menuPagamento(void) {
 	char op;
     system("clear || cls");
 	printf("\n");
@@ -100,7 +103,7 @@ void menuPagamento(void) {
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", op);
+	scanf("%c", &op);
 	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
@@ -108,10 +111,11 @@ void menuPagamento(void) {
 	printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
+    return op;
 }
 
 
-void menuEstoque(void) {
+char menuEstoque(void) {
 	char op;
     system("clear || cls");
 	printf("\n");
@@ -129,7 +133,7 @@ void menuEstoque(void) {
 	printf("///           0. Voltar ao menu principal                                 ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", op);
+	scanf("%c", &op);
 	getchar();
 	printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
@@ -137,6 +141,7 @@ void menuEstoque(void) {
 	printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
+    return op;
 }
 
 
@@ -145,7 +150,7 @@ void telaCadastrarCliente(void) {
 	char cpf[11];
 	char endereço[51];
 	char nasc[11];
-	char telefone[12];
+	char celular[12];
     system("clear || cls");
 	printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -167,7 +172,7 @@ void telaCadastrarCliente(void) {
 	scanf("%[0-9/]", nasc);
 	getchar();
 	printf("///           Telefone:                                                   ///\n");
-	scanf("%[0-9]", celular);
+	scanf("%12[0-9]",celular);
 	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
@@ -300,7 +305,7 @@ void telaEditCliente(void) {
 	printf("///           5. Telefone                                                 ///\n");
     printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", op);
+	scanf("%c", &op);
 	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");

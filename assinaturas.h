@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void menuPrincipal(void);
-void menuCliente(void);
-void menuVendas(void);
-void menuPagamento(void);
-void menuEstoque(void);
+char menuPrincipal(void);
+char menuCliente(void);
+char menuVendas(void);
+char menuPagamento(void);
+char menuEstoque(void);
 void telaCadastrarCliente(void);
 void telaCadVenda(void);
 void telaCadPag(void);
