@@ -2,7 +2,7 @@
 
 char menuPrincipal(void) {
 	char op;
-    system("clear || cls");
+  system("clear || cls");
 	printf("\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
@@ -11,27 +11,25 @@ char menuPrincipal(void) {
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           1. Módulo Cliente                                           ///\n");
-    printf("///           2. Módulo Vendas                                            ///\n");
-    printf("///           3. Módulo Pagamentos                                        ///\n");
+  printf("///           2. Módulo Vendas                                            ///\n");
+  printf("///           3. Módulo Pagamentos                                        ///\n");
 	printf("///           4. Módulo Estoque                                           ///\n");
 	printf("///           0. Encerrar o programa                                      ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", &op);
-	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
-	printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+  scanf("%c", &op);
 	getchar();
+  printf("\n");
   return op;
 }
 
 
 char menuCliente(void) {
 	char op;
-    system("clear || cls");
+  system("clear || cls");
 	printf("\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
@@ -46,12 +44,12 @@ char menuCliente(void) {
 	printf("///           0. Voltar ao menu principal                                 ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", &op);
-	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
-	printf("\n");
+  	scanf("%c", &op);
+	getchar();
+  printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
     return op;
@@ -74,11 +72,11 @@ char menuVendas(void) {
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", &op);
-	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
+  scanf("%c", &op);
+	getchar();
 	printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
@@ -103,12 +101,12 @@ char menuPagamento(void) {
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
-	scanf("%c", &op);
-	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
-	printf("\n");
+	scanf("%c", &op);
+	getchar();
+  printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
     return op;
@@ -133,19 +131,19 @@ char menuEstoque(void) {
 	printf("///           0. Voltar ao menu principal                                 ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
+	printf("///                                                                       ///\n");
+  printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	scanf("%c", &op);
 	getchar();
-	printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+  printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
     return op;
 }
 
 
-void telaCadastrarCliente(void) {
+  void telaCadastrarCliente(void) {
 	char nome[51];
 	char cpf[11];
 	char endereço[51];
