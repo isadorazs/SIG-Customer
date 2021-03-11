@@ -67,7 +67,6 @@ char menuVendas(void) {
 	printf("///           = = = = = = = = = = = = = = = = = = = = = =                 ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           1. Registrar uma nova venda                                 ///\n");
-	printf("///           2. Registrar recebimento de um produto                      ///\n");
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
