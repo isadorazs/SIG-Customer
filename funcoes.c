@@ -67,8 +67,7 @@ char menuVendas(void) {
 	printf("///           = = = = = = = = = = = = = = = = = = = = = =                 ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           1. Registrar uma nova venda                                 ///\n");
-	printf("///           2. Pesquisar um produto                                     ///\n");
-	printf("///           3. Registrar recebimento de um produto                      ///\n");
+	printf("///           2. Registrar recebimento de um produto                      ///\n");
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
@@ -96,8 +95,7 @@ char menuPagamento(void) {
 	printf("///                                                                       ///\n");
 	printf("///           1. Cadastrar uma nova transação                             ///\n");
 	printf("///           2. Pesquisar os dados de uma transação                      ///\n");
-	printf("///           3. Atualizar o cadastro de pagamento                        ///\n");
-	printf("///           4. Excluir um pagamento                                     ///\n");
+	printf("///           3. Excluir um pagamento                                     ///\n");
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
@@ -125,9 +123,7 @@ char menuEstoque(void) {
 	printf("///                                                                       ///\n");
 	printf("///           1. Cadastrar um novo produto                                ///\n");
 	printf("///           2. Pesquisar um produto no estoque                          ///\n");
-	printf("///           3. Atualizar a quantidade de um produto                     ///\n");
-	printf("///           4. Registrar falta de um produto                            ///\n");
-	printf("///           5. Excluir um produto                                       ///\n");
+	printf("///           3. Excluir um produto                                       ///\n");
 	printf("///           0. Voltar ao menu principal                                 ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
