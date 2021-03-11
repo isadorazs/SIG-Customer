@@ -95,7 +95,6 @@ char menuPagamento(void) {
 	printf("///                                                                       ///\n");
 	printf("///           1. Cadastrar uma nova transação                             ///\n");
 	printf("///           2. Pesquisar os dados de uma transação                      ///\n");
-	printf("///           3. Excluir um pagamento                                     ///\n");
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
@@ -327,20 +326,35 @@ void telaPesquisarProd(void) {
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
 }
-
-
-void telaAtualProd(void) {
+void telaPesquisarPag (void) {
     system("clear || cls");
 	printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
-	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
-	printf("///           = = = = = = = =  Pesquisar produto = = = = = = =            ///\n");
-	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = Dados de pagamento = = = = = = =              ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///                                                                       ///\n");
-	printf("///           Digite o nome do produto a ser atualizado                   ///\n");
-	printf("///           Quantas unidades a mais?                                    ///\n");
-  	printf("///           Quantas unidades a menos?                                   ///\n");
+	printf("///           Cliente pagante:                                            ///\n");
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+}
+
+void telaExcProduto (void) {
+    system("clear || cls");
+	printf("\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = Dados de pagamento = = = = = = =              ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Qual produto você deseja excluir?:                          ///\n");
+	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");

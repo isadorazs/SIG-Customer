@@ -15,3 +15,5 @@ void telaExcCliente(void);
 void telaEditCliente(void);
 void telaPesquisarProd(void);
 void telaAtualProd(void);
+void telaPesquisarPag(void);
+void telaExcProduto(void);
