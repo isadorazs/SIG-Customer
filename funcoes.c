@@ -1,3 +1,4 @@
+
 #include "assinaturas.h"
 
 char menuPrincipal(void) {
@@ -27,7 +28,7 @@ char menuPrincipal(void) {
 }
 
 
-char menuCliente(void) {
+void menuCliente(void) {
 	char op;
   system("clear || cls");
 	printf("\n");
@@ -47,12 +48,28 @@ char menuCliente(void) {
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
-  	scanf("%c", &op);
+  scanf("%c", &op);
 	getchar();
+  while(op != '0'){
+    switch (op){
+      case '1':
+        telaCadastrarCliente();
+        break;
+      case '2':
+        telaBuscarCliente();
+        break;
+      case '3':
+        telaEditCliente();
+        break;
+      case '4':
+        telaExcCliente();
+        break;
+    }
+  }
   printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+  printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
-    return op;
+
 }
 
 
@@ -105,7 +122,7 @@ char menuPagamento(void) {
   printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
-    return op;
+  return op;
 }
 
 
@@ -137,34 +154,45 @@ char menuEstoque(void) {
 }
 
 
-  void telaCadastrarCliente(void) {
-	char nome[51];
-	char cpf[11];
-	char endereço[51];
-	char nasc[11];
-	char celular[12];
-    system("clear || cls");
+void telaCadastrarCliente(void){
+  Cadastro* dados;
+  dados = (Cadastro*) malloc(sizeof(Cadastro));
+  system("clear || cls");
 	printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///           = = = = = = = = Cadastrar Cliente = = = = = = =             ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Nome:                                                       ///\n");
-	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+	scanf("%c", &dados->nome);
 	getchar();
 	printf("///           CPF:                                                        ///\n");
-	scanf("%[0-9]", cpf);
+	scanf("%d", &dados->cpf);
 	getchar();
 	printf("///           Endereço:                                                   ///\n");
-	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", endereço);
+	scanf("%c",  &dados->endereço);
 	getchar();
-	printf("///           Data de Nascimento:                                         ///\n");
-	scanf("%[0-9/]", nasc);
-	getchar();
+  printf("\n\n    Digite a data de nascimento");
+  printf(" \n\n    Dia: ");
+  scanf("%d", &dados->dd);
+  printf("\n\n    Mês: ");
+  scanf("%d", &dados->mm);
+  printf("\n\n    Ano: ");
+  scanf("%d", &dados->aa);
+  while(!(valData(dados->dd, dados->mm, dados->aa))){
+    printf("\n\n    Por favor digite uma data válida");
+    printf("\n\n    Dia: ");
+    scanf("%d", &dados->dd);
+    printf("\n\n    Mês: ");
+    scanf("%d", &dados->mm);
+    printf("\n\n    Ano: ");
+    scanf("%d", &dados->aa);
+  }
+  getchar();
 	printf("///           Telefone:                                                   ///\n");
-	scanf("%12[0-9]",celular);
+	scanf("%d", &dados->celular);
 	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
@@ -359,4 +387,57 @@ void telaExcProduto (void) {
 	printf("\n");
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
+}
+
+int valData(int dd, int mm, int aa) {
+    int maiorDia;
+    if (aa < 0 || mm < 1 || mm > 12 || dd < 1)
+         return 0;
+    if (mm == 2) {
+         if (bissexto(aa)){
+             maiorDia = 29;
+        }else{
+             maiorDia = 28;
+        }
+     } else if (mm == 4 || mm == 6 || mm == 9 || mm == 11) {
+         maiorDia = 30;
+     } else {
+         maiorDia = 31;
+        if (dd > maiorDia){
+            return 0;
+        }
+    }
+     return 1;
+}
+
+int bissexto(int aa) {
+    if ((aa % 4 == 0) && (aa % 100 != 0)) {
+         return 1;
+     } else if (aa % 400 == 0) {
+         return 1;
+     } else {
+         return 0;
+     }
+}
+
+int valHora(int hr, int min) {
+    if((hr >= 0 && hr < 24) && (min >= 0 && min < 60))
+        return 1;
+    else
+    {
+        return 0;
+    }
+    
+}
+
+void salvaDados(Cadastro* dados) {
+  FILE* fp;
+  fp = fopen("dados.dat", "ab");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+  fwrite(dados, sizeof(Cadastro), 1, fp);
+  fclose(fp);
 }

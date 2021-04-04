@@ -15,8 +15,7 @@
  
 int main(void) {
 	char opcao;
-
-  do{
+  while(opcao != '0'){
     opcao = menuPrincipal();
     switch (opcao){
       case '1':
@@ -33,7 +32,6 @@ int main(void) {
         break;
     }
 
-  }while(opcao != '0');
-   
+  } 
   return 0;
 }
