@@ -29,7 +29,8 @@ char menuPrincipal(void) {
 
 
 void menuCliente(void) {
-	char op;
+	char op='9';
+while(op != '0'){
   system("clear || cls");
 	printf("\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -50,7 +51,7 @@ void menuCliente(void) {
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
   scanf("%c", &op);
 	getchar();
-  while(op != '0'){
+
     switch (op){
       case '1':
         telaCadastrarCliente();
@@ -166,14 +167,11 @@ void telaCadastrarCliente(void){
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Nome:                                                       ///\n");
-	scanf("%c", &dados->nome);
-	getchar();
+	scanf("%50[^\n]", dados->nome);
 	printf("///           CPF:                                                        ///\n");
 	scanf("%d", &dados->cpf);
-	getchar();
-	printf("///           Endereço:                                                   ///\n");
-	scanf("%c",  &dados->endereço);
-	getchar();
+	printf("///           Endereço:                                                 ///\n");
+	scanf("%50[^\n]", dados->endereco);
   printf("\n\n    Digite a data de nascimento");
   printf(" \n\n    Dia: ");
   scanf("%d", &dados->dd);
@@ -181,7 +179,7 @@ void telaCadastrarCliente(void){
   scanf("%d", &dados->mm);
   printf("\n\n    Ano: ");
   scanf("%d", &dados->aa);
-  while(!(valData(dados->dd, dados->mm, dados->aa))){
+  /*while(!(valData(dados->dd, dados->mm, dados->aa))){
     printf("\n\n    Por favor digite uma data válida");
     printf("\n\n    Dia: ");
     scanf("%d", &dados->dd);
@@ -189,24 +187,24 @@ void telaCadastrarCliente(void){
     scanf("%d", &dados->mm);
     printf("\n\n    Ano: ");
     scanf("%d", &dados->aa);
-  }
-  getchar();
+  }*/
 	printf("///           Telefone:                                                   ///\n");
 	scanf("%d", &dados->celular);
-	getchar();
+  dados->status = '1';
 	printf("///                                                                       ///\n");
-	printf("///                                                                       ///\n");
+	printf("///           Cadastro concluído                                          ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
+  salvaDados(dados);
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
 }
 
 
 void telaCadVenda(void) {
-    system("clear || cls");
+  system("clear || cls");
 	printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///           = = = = = = = = Registrar Venda = = = = = = = =             ///\n");
@@ -269,15 +267,26 @@ void telaRegProd(void) {
 
 
 void telaBuscarCliente(void) {
-    system("clear || cls");
+  system("clear || cls");
+  FILE *fp;
+  Cadastro* dados;
+  int achou;
+  char buscar;
+  fp = fopen("dados.dat", "r+b");
+  if (fp == NULL){
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+		printf("Não é possível continuar o programa...\n");
+		exit(1);
+  }
 	printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
 	printf("///           = = = = = = = =  Buscar Cliente = = = = = = =               ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
 	printf("///                                                                       ///\n");
-	printf("///           Digite o CPF do cliente:                                    ///\n");
+	printf("///           Digite o nome do cliente:                                   ///\n");
+  telaExibeCliente(dados);
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -288,9 +297,9 @@ void telaBuscarCliente(void) {
 
 
 void telaExcCliente(void) {
-    system("clear || cls");
+  system("clear || cls");
 	printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
 	printf("///           = = = = = = = = Excluir Cliente = = = = = = =               ///\n");
@@ -354,7 +363,7 @@ void telaPesquisarProd(void) {
 	getchar();
 }
 void telaPesquisarPag (void) {
-    system("clear || cls");
+  system("clear || cls");
 	printf("\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
@@ -372,7 +381,7 @@ void telaPesquisarPag (void) {
 }
 
 void telaExcProduto (void) {
-    system("clear || cls");
+  system("clear || cls");
 	printf("\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
@@ -389,6 +398,7 @@ void telaExcProduto (void) {
 	getchar();
 }
 
+// função feita por @flaviusgorgonio
 int valData(int dd, int mm, int aa) {
     int maiorDia;
     if (aa < 0 || mm < 1 || mm > 12 || dd < 1)
@@ -410,6 +420,7 @@ int valData(int dd, int mm, int aa) {
      return 1;
 }
 
+// função feita por @flaviusgorgonio
 int bissexto(int aa) {
     if ((aa % 4 == 0) && (aa % 100 != 0)) {
          return 1;
@@ -418,16 +429,6 @@ int bissexto(int aa) {
      } else {
          return 0;
      }
-}
-
-int valHora(int hr, int min) {
-    if((hr >= 0 && hr < 24) && (min >= 0 && min < 60))
-        return 1;
-    else
-    {
-        return 0;
-    }
-    
 }
 
 void salvaDados(Cadastro* dados) {
@@ -440,4 +441,24 @@ void salvaDados(Cadastro* dados) {
   }
   fwrite(dados, sizeof(Cadastro), 1, fp);
   fclose(fp);
+}
+
+void telaExibeCliente(Cadastro* dados){
+  system("clear || cls");
+	printf("\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///           = = = = = = = =  Dados do Cliente = = = = = =               ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///                                                                       ///\n");
+	printf("              Nome: %s\n", dados->nome);
+  printf("              Endereço: %s\n", dados->endereco);
+  printf("              CPF: %d\n", dados->cpf);
+  printf("              Celular: %d\n", dados->celular);
+	printf("              Data de Nascimento: %d/%d/%d\n", dados->dd, dados->mm, dados->aa);
+  printf("///");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
 }
