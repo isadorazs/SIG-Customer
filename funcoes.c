@@ -446,7 +446,6 @@ void salvaDados(Cadastro* dados) {
 }
 
 void telaExibeCliente(Cadastro* dados){
-  system("clear || cls");
 	printf("\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
