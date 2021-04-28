@@ -34,3 +34,4 @@ void telaExcProduto(void);
 int valData(int, int, int);
 int bissexto(int);
 void salvaDados(Cadastro*);
+void listar(void);

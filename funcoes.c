@@ -43,6 +43,7 @@ while(op != '0'){
 	printf("///           2. Pesquisar um Cliente                                     ///\n");
 	printf("///           3. Atualizar um Cliente                                     ///\n");
 	printf("///           4. Apagar um Cliente                                        ///\n");
+  printf("///           5. Listar Clientes                                          ///\n");
 	printf("///           0. Voltar ao menu principal                                 ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
@@ -65,6 +66,8 @@ while(op != '0'){
       case '4':
         telaExcCliente();
         break;
+      case '5':
+        listar();
     }
   }
   printf("\n");
@@ -170,7 +173,7 @@ void telaCadastrarCliente(void){
 	scanf("%50[^\n]", dados->nome);
 	printf("///           CPF:                                                        ///\n");
 	scanf("%d", &dados->cpf);
-	printf("///           Endereço:                                                 ///\n");
+	printf("///           Endereço:                                                   ///\n");
 	scanf("%50[^\n]", dados->endereco);
   printf("\n\n    Digite a data de nascimento");
   printf(" \n\n    Dia: ");
@@ -397,7 +400,6 @@ void telaExcProduto (void) {
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
 }
-
 // função feita por @flaviusgorgonio
 int valData(int dd, int mm, int aa) {
     int maiorDia;
@@ -462,3 +464,29 @@ void telaExibeCliente(Cadastro* dados){
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
 }
+void listar(void){
+	FILE* fp;
+	Cadastro* dados;
+	fp = fopen("dados.dat", "rb");
+	if (fp == NULL) {
+		printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+		printf("Não é possível continuar o programa...\n");
+		exit(1);
+	}
+	printf("\n\n");
+	printf("========================== \n");
+	printf("==  Lista de cadastros  ==\n");
+	printf("========================== \n");
+	dados = (Cadastro*) malloc(sizeof(Cadastro));
+	while(fread(dados, sizeof(Cadastro), 1, fp)) {
+		if (dados->status == '1') {
+			telaExibeCliente(dados);
+		}
+	}
+	fclose(fp);
+	free(dados);
+	printf("\nPressione enter para voltar");
+
+	getchar();
+}
+
