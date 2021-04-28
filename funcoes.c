@@ -170,11 +170,11 @@ void telaCadastrarCliente(void){
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Nome:                                                       ///\n");
-	scanf("%50[^\n]", dados->nome);
+	scanf(" %50[^\n]", dados->nome);
 	printf("///           CPF:                                                        ///\n");
 	scanf("%d", &dados->cpf);
 	printf("///           Endereço:                                                   ///\n");
-	scanf("%50[^\n]", dados->endereco);
+	scanf(" %50[^\n]", dados->endereco);
   printf("\n\n    Digite a data de nascimento");
   printf(" \n\n    Dia: ");
   scanf("%d", &dados->dd);
