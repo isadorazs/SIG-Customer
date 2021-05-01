@@ -96,6 +96,12 @@ char menuVendas(void) {
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
   scanf("%c", &op);
 	getchar();
+  
+    switch (op){
+      case '1':
+        telaCadVenda();
+        break;
+    }
 	printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
@@ -123,6 +129,15 @@ char menuPagamento(void) {
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	scanf("%c", &op);
 	getchar();
+  
+    switch (op){
+      case '1':
+        telaCadPag();
+        break;
+      case '2':
+        telaPesquisarPag();
+        break;
+    }
   printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
@@ -151,6 +166,18 @@ char menuEstoque(void) {
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	scanf("%c", &op);
 	getchar();
+  
+    switch (op){
+      case '1':
+        telaRegProd();
+        break;
+      case '2':
+        telaPesquisarProd();
+        break;
+      case '3':
+        telaExcProduto();
+        break;
+    }
 	printf("\n");
   printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
