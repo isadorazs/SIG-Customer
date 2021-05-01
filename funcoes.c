@@ -265,7 +265,7 @@ void telaCadPag(void) {
 	printf("///           Total a pagar:                                              ///\n");
 	printf("///           Forma de pagamento:                                         ///\n");
 	printf("///           A vista ou a prazo:                                         ///\n");
-	printf("///           Cliente pagante:                                            ///\n");
+	printf("///           CPF do pagante:                                             ///\n");
 	printf("///           Quantidade paga:                                            ///\n");
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
