@@ -12,7 +12,7 @@ char menuPagamento(void) {
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           1. Cadastrar uma nova transação                             ///\n");
-	printf("///           2. Pesquisar os dados de uma transação                      ///\n");
+	printf("///           2. Editar os dados de uma transação                         ///\n");
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
@@ -26,9 +26,9 @@ char menuPagamento(void) {
       case '1':
         regPag();
         break;
-      /*case '2':
-        pesquisarPag();
-        break;*/
+      case '2':
+        editPag();
+        break;
     }
   printf("\n");
   printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -38,6 +38,26 @@ char menuPagamento(void) {
 
 
 void regPag(void){
+  Cliente* clt;
+	char* cpf;
+
+	cpf = telaRegPag();
+	clt = buscarCliente(cpf);
+	if (clt == NULL) {
+    	printf("\n\nCliente não encontrado!\n\n");
+      printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	    getchar();
+ }else {
+		clt = telaInfoPag();
+		strcpy(clt->cpf, cpf);
+		regravarCliente(clt);
+		free(clt);
+	}
+	free(cpf);
+}
+
+
+void editPag(void){
   Cliente* clt;
 	char* cpf;
 
@@ -117,20 +137,25 @@ Cliente* telaInfoPag(void) {
 }
 
 
-/*char* telaPesquisarPag (void) {
+char* telaEditPag (void) {
+  char* cpf;
+  cpf = (char*) malloc(12*sizeof(char));
   system("clear || cls");
 	printf("\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
-	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
-	printf("///           = = = = = = = Dados de pagamento = = = = = = =              ///\n");
-	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///           = = = = = = = Alterar pagamento = = = = = = =               ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
 	printf("///                                                                       ///\n");
-	printf("///           Cliente pagante:                                            ///\n");
+	printf("///           Informe o CPF do cliente que deseja alterar:                ///\n");
+  scanf("%[0-9]", cpf);
+	getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
-}*/
+  return cpf;
+}

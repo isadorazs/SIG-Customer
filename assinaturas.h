@@ -2,13 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 #define True 1
 #define False 0
+
 
 typedef struct cliente Cliente;
 typedef struct estoque Estoque;
 typedef struct pagamento Pagamento;
 typedef struct venda Venda;
+
 
 struct cliente{
   char nome[51];
@@ -25,28 +28,17 @@ struct cliente{
   int status;
 };
 
+
 struct estoque{
   char produto[21];
   char cod[5];
   int und;
   float preco;
+  float precoVenda;
+  int undVenda;
   int status;  
 };
 
-/*struct pagamento{
-  
-  int status;
-};*/
-
-struct venda{
-  int cod;
-  char cpf[12];
-  int preco;
-  int dd;
-  int mm;
-  int aa;
-  int status;
-};
 
 char menuPrincipal(void);
 
@@ -68,23 +60,27 @@ void regravarCliente(Cliente*);
 
 
 char menuVendas(void);
-void telaCadVenda(void);
+void cadVenda(void);
+char* telaCadVenda(void);
+Estoque* telaInfoVenda(void);
 
 
 char menuPagamento(void);
 void regPag(void);
-//void pesquisarPag(void);
+void editPag(void);
 char* telaRegPag(void);
 Cliente* telaInfoPag(void);
-//char* telaPesquisarPag(void);
+char* telaEditPag(void);
 
 
 char menuEstoque(void);
 void regProd(void);
 void pesquisarProd(void);
+void editProd(void);
 void excProd(void);
-char* telaRegProd(void);
+Estoque* telaRegProd(void);
 char* telaPesquisarProd(void);
+char* telaEditProd(void);
 char* telaExcProd(void);
 Estoque* buscarProd(char*);
 void exibirProd(Estoque*);
@@ -97,30 +93,3 @@ int valData(int, int, int);
 int bissexto(int);
 int ehDigito(char);
 int validarCPF(char*);
-
-
-/*void listar(void){
-	FILE* fp;
-	Cadastro* dados;
-	fp = fopen("dados.dat", "rb");
-	if (fp == NULL) {
-		printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-		printf("Não é possível continuar o programa...\n");
-		exit(1);
-	}
-	printf("\n\n");
-	printf("========================== \n");
-	printf("==  Lista de cadastros  ==\n");
-	printf("========================== \n");
-	dados = (Cadastro*) malloc(sizeof(Cadastro));
-	while(fread(dados, sizeof(Cadastro), 1, fp)) {
-		if (dados->status == '1') {
-			telaExibeCliente(dados);
-		}
-	}
-	fclose(fp);
-	free(dados);
-	printf("\nPressione enter para voltar");
-
-	getchar();
-}*/
