@@ -40,6 +40,7 @@ void menuCliente(void) {
         break;
       case '5':
         listarCliente();
+        break;
     }
   }
   printf("\n");
@@ -58,7 +59,14 @@ void cadastrarCliente(void){
 
 
 void pesquisarCliente(void){
-  printf("Teste...");
+  Cliente* clt;
+	char* cpf;
+
+	cpf = telaPesquisarCliente();
+	clt = buscarCliente(cpf);
+	exibirCliente(clt);
+	free(clt); 
+	free(cpf);
 }
 
 
@@ -70,6 +78,8 @@ void editCliente(void){
 	clt = buscarCliente(cpf);
 	if (clt == NULL) {
     	printf("\n\nCliente não encontrado!\n\n");
+      printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	    getchar();
  }else {
 		clt = telaCadastrarCliente();
 		strcpy(clt->cpf, cpf);
@@ -81,7 +91,23 @@ void editCliente(void){
 
 
 void excCliente(void){
-  printf("Teste...");
+  Cliente* clt;
+	char *cpf;
+
+	cpf = telaExcCliente();
+	clt = (Cliente*) malloc(sizeof(Cliente));
+	clt = buscarCliente(cpf);
+	if (clt == NULL) {
+    	printf("\n\nCliente não encontrado!\n\n");
+      printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	    getchar();
+ }else {
+		  clt->status = False;
+		  regravarCliente(clt);
+		  free(clt);
+	}
+	free(cpf);
+
 }
 
 
@@ -101,73 +127,59 @@ Cliente* telaCadastrarCliente(void){
   getchar();
   do {
 	  printf("///           CPF (apenas números):                                       ///\n");
-	  scanf("%[^\n]", &clt->cpf);
+	  scanf("%[^\n]", clt->cpf);
     getchar();
   } while (!validarCPF(clt->cpf));
-  printf("\n\n    Digite a data de nascimento");
-  printf(" \n\n    Dia: ");
-  scanf("%d", &clt->dd);
-  printf("\n\n    Mês: ");
-  scanf("%d", &clt->mm);
-  printf("\n\n    Ano: ");
-  scanf("%d", &clt->aa);
-  while(!(valData(clt->dd, clt->mm, clt->aa))){
-    printf("\n\n    Por favor digite uma data válida");
-    printf("\n\n    Dia: ");
+  do{
+    printf("\n\n    Digite a data de nascimento");
+    printf(" \n\n    Dia: ");
     scanf("%d", &clt->dd);
     printf("\n\n    Mês: ");
     scanf("%d", &clt->mm);
     printf("\n\n    Ano: ");
     scanf("%d", &clt->aa);
-  }
+  } while(!(valData(clt->dd, clt->mm, clt->aa)));
 	printf("///           Telefone:                                                   ///\n");
 	scanf("%d", &clt->celular);
   printf("///           Endereço:                                                   ///\n");
 	scanf(" %50[^\n]", clt->endereco);
-  clt->status = 1;
+  clt->status = True;
 	printf("///                                                                       ///\n");
 	printf("///           Cadastro concluído                                          ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
-  salvaCliente(clt);
+  printf("\t\t\t>>> Cadastro concluído com sucesso!\n");
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
+  return clt;
 }
 
 char* telaPesquisarCliente(void) {
-  system("clear || cls");
-  FILE *fp;
-  Cliente* clt;
-  int achou;
-  char buscar;
-  fp = fopen("cliente.dat", "r+b");
-  if (fp == NULL){
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-		printf("Não é possível continuar o programa...\n");
-		exit(1);
-  }
-  else{
-	  printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-	  printf("///                                                                       ///\n");
-	  printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
-	  printf("///           = = = = = = = =  Pesquisar Cliente = = = = = = =               ///\n");
-	  printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
-	  printf("///                                                                       ///\n");
-	  printf("///           Digite o nome do cliente:                                   ///\n");
-    telaExibeCliente(clt);
-	  printf("///                                                                       ///\n");
-	  printf("///                                                                       ///\n");
-	  printf("/////////////////////////////////////////////////////////////////////////////\n");
-	  printf("\n");
-  }
-	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-	getchar();
+  char* cpf;
+  cpf = (char*) malloc(12*sizeof(char));
+
+	printf("\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///           = = = = = = = Pesquisar Cliente = = = = = = =               ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Informe o CPF do cliente:                                   ///\n");
+  scanf("%[0-9]", cpf);
+  getchar();
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+  return cpf;
 }
 
 
 char* telaExcCliente(void) {
   char *cpf;
+  cpf = (char*) malloc(12*sizeof(char));
+  
   system("clear || cls");
 	printf("\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -189,6 +201,8 @@ char* telaExcCliente(void) {
 
 char* telaEditCliente(void) {
 	char* cpf;
+  cpf = (char*) malloc(12*sizeof(char));
+
   system("clear || cls");
 	printf("\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -210,29 +224,26 @@ char* telaEditCliente(void) {
   return cpf;
 }
 
-void telaExibeCliente(Cliente* clt){
-	printf("\n");
-  if (clt == NULL) {
-		printf("\n= = = Cliente Inexistente = = =\n");
-	} 
-  else {
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-	  printf("///                                                                       ///\n");
-	  printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
-	  printf("///           = = = = = = = =  Dados do Cliente = = = = = =               ///\n");
-	  printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
-	  printf("///                                                                       ///\n");
-	  printf("              Nome: %s\n", clt->nome);
-    printf("              Endereço: %s\n", clt->endereco);
-    printf("              CPF: %s\n", clt->cpf);
-    printf("              Celular: %d\n", clt->celular);
-	  printf("              Data de Nascimento: %d/%d/%d\n", clt->dd, clt->mm, clt->aa);
-    printf("              Status: %d\n", clt->status);
-    printf("///");
-	  printf("///                                                                       ///\n");
-	  printf("/////////////////////////////////////////////////////////////////////////////\n");
-	  printf("\n");
-  }
+void exibirCliente(Cliente* clt){
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
+  printf("///                                                                       ///\n");
+  printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+  printf("///           = = = = = = = =  Dados do Cliente = = = = = =               ///\n");
+  printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+  printf("///                                                                       ///\n");
+  printf("              Nome: %s\n", clt->nome);
+  printf("              Endereço: %s\n", clt->endereco);
+  printf("              CPF: %s\n", clt->cpf);
+  printf("              Celular: %d\n", clt->celular);
+  printf("              Data de Nascimento: %d/%d/%d\n", clt->dd, clt->mm, clt->aa);
+  printf("              Dívida: %2.f\n", clt->precoPag);
+  printf("              Forma de Pagamento: %s\n", clt->tipoPag);
+  printf("              Prazo: %d\n", clt->prazo);
+  printf("              Status: %d\n", clt->status);
+  printf("///");
+  printf("///                                                                       ///\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
+  printf("\n");
   printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
 }
@@ -257,16 +268,13 @@ Cliente* buscarCliente(char* cpf) {
 	clt = (Cliente*) malloc(sizeof(Cliente));
 	fp = fopen("cliente.dat", "rb");
 	if (fp == NULL) {
-		printf("Não foi possível encontrar o arquivo solicitado...");
-    printf("\n\nTecle ENTER para continuar!\n\n");
-	  getchar();
-    exit(1);
+		printf("Não foi possível encontrar o cliente solicitado...");
 	}
 	while(fread(clt, sizeof(Cliente), 1, fp)) {
-		if ((strcmp(clt->cpf, cpf) == 0) && (clt->status == 1)) {
+		if ((strcmp(clt->cpf, cpf) == 0) && (clt->status == True)) {
 			fclose(fp);
 			return clt;
-		}
+    } 
 	}
 	fclose(fp);
 	return NULL;
@@ -289,7 +297,7 @@ void listarCliente(void){
 	clt = (Cliente*) malloc(sizeof(Cliente));
 	while(fread(clt, sizeof(Cliente), 1, fp)) {
 		if (clt->status == '1') {
-			telaExibeCliente(clt);
+			exibirCliente(clt);
 		}
 	}
 	fclose(fp);
@@ -299,12 +307,10 @@ void listarCliente(void){
 	getchar();
 }
 
-
 void regravarCliente(Cliente* clt) {
 	int achou;
 	FILE* fp;
 	Cliente* cltLido;
-
 	cltLido = (Cliente*) malloc(sizeof(Cliente));
 	fp = fopen("cliente.dat", "r+b");
 	if (fp == NULL) {
@@ -313,10 +319,10 @@ void regravarCliente(Cliente* clt) {
 	  getchar();
     exit(1);
 	}
-	achou = 0;
+	achou = False;
 	while(fread(cltLido, sizeof(Cliente), 1, fp) && !achou) {
 		if (strcmp(cltLido->cpf, clt->cpf) == 0) {
-			achou = 1;
+			achou = True;
 			fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
       fwrite(clt, sizeof(Cliente), 1, fp);
 		}

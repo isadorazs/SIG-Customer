@@ -1,7 +1,90 @@
 #include "assinaturas.h"
 
+char menuEstoque(void) {
+	char op;
+  system("clear || cls");
+	printf("\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///           = = = = = = = =  Menu Estoque = = = = = = = =               ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           1. Cadastrar um novo produto                                ///\n");
+	printf("///           2. Pesquisar um produto no estoque                          ///\n");
+	printf("///           3. Excluir um produto                                       ///\n");
+  printf("///           4. Listar produtos                                          ///\n");
+	printf("///           0. Voltar ao menu principal                                 ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Escolha a opção desejada:                                   ///\n");
+	printf("///                                                                       ///\n");
+  printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	scanf("%c", &op);
+	getchar();
+  
+    switch (op){
+      case '1':
+        regProd();
+        break;
+      case '2':
+        pesquisarProd();
+        break;
+      case '3':
+        excProd();
+        break;
+      case '4':
+        listarEstoque();
+        break;
+    }
+	printf("\n");
+  printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+	getchar();
+  return op;
+}
 
-void telaRegProd(void) {
+
+void regProd(void){
+  Estoque *produtos;
+
+  produtos = telaRegProd();
+  salvaEstoque(produtos);
+  free(produtos);
+}
+
+
+void pesquisarProd(void){
+  Estoque* produtos;
+	char* cod;
+
+	cod = telaPesquisarProd();
+	produtos = buscarProd(cod);
+	exibirProd(produtos);
+	free(produtos); 
+	free(cod);
+}
+
+
+void excProd(void){
+  Estoque* produtos;
+	char *cod;
+
+	cod = telaExcProd();
+	produtos = (Estoque*) malloc(sizeof(Estoque));
+	produtos = buscarProd(cod);
+	if (produtos == NULL) {
+    	printf("\n\nProduto não encontrado!\n\n");
+ }else {
+		  produtos->status = 1;
+		  regravarProd(produtos);
+		  free(produtos);
+	}
+	free(cod);
+
+}
+
+
+char* telaRegProd(void) {
   Estoque* produtos;
   produtos = (Estoque*) malloc(sizeof(Estoque));
   system("clear || cls");
@@ -16,7 +99,7 @@ void telaRegProd(void) {
   scanf("%20[^\n]", produtos->produto);
   getchar();
   printf("///           Código:                                                     ///\n");
-  scanf("%d", &produtos->cod);
+  scanf("%[^\n]", produtos->cod);
   getchar();
 	printf("///           Quantas unidades:                                           ///\n");
   scanf("%d", &produtos->und);
@@ -27,13 +110,18 @@ void telaRegProd(void) {
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
- salvaEstoque(produtos);
+  salvaEstoque(produtos);
+  printf("\t\t\t>>> Registro concluído com sucesso!\n");
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
+  return produtos;
 }
 
 
-void telaPesquisarProd(void) {
+char* telaPesquisarProd(void) {
+  char* cod;
+  cod = (char*) malloc(5*sizeof(char));
+
   system("clear || cls");
 	printf("\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -42,18 +130,22 @@ void telaPesquisarProd(void) {
 	printf("///           = = = = = = = =  Pesquisar produto = = = = = = =            ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
 	printf("///                                                                       ///\n");
-	printf("///           Qual Produto você deseja encontrar?                         ///\n");
+	printf("///           Qual o código do produto você deseja encontrar?             ///\n");
+  scanf("%[0-9]", cod);
+  getchar();
 	printf("///                                                                       ///\n");
  	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
-	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-	getchar();
+  return cod;
 }
 
 
-void telaExcProduto (void) {
+char* telaExcProd(void) {
+  char *cod;
+  cod = (char*) malloc(5*sizeof(char));
+  
   system("clear || cls");
 	printf("\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -62,30 +154,35 @@ void telaExcProduto (void) {
 	printf("///           = = = = = = = Dados de pagamento = = = = = = =              ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///                                                                       ///\n");
-	printf("///           Qual produto você deseja excluir?:                          ///\n");
+	printf("///           Qual o código do produto você deseja excluir?               ///\n");
+  scanf("%[0-9]", cod);
+  getchar();
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
-	printf("\n");
-	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-	getchar();
+  return cod;
 }
 
-void telaExibeEstoque(Estoque* produtos){
-	printf("\n");
-  printf("/////////////////////////////////////////////////////////////////////////////\n");
-	printf("///                                                                       ///\n");
-	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
-	printf("///           = = = = = = = =  Dados do Produto = = = = = =               ///\n");
-	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
-	printf("///                                                                       ///\n");
-	printf("              Nome: %s\n", produtos->produto);
-  printf("              Código: %d\n", produtos->cod);
-  printf("              Unidades: %d\n", produtos->und);
-  printf("              Preço(Und): %f\n", produtos->preco);
-	printf("///                                                                       ///\n");
-	printf("/////////////////////////////////////////////////////////////////////////////\n");
-	printf("\n");
+void exibirProd(Estoque* produtos){
+  if (produtos == NULL) {
+		printf("\n= = = Produto Inexistente = = =\n");
+	} 
+  else {
+	  printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+	  printf("///                                                                       ///\n");
+	  printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	  printf("///           = = = = = = = =  Dados do Produto = = = = = =               ///\n");
+	  printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	  printf("///                                                                       ///\n");
+	  printf("              Nome: %s\n", produtos->produto);
+    printf("              Código: %s\n", produtos->cod);
+    printf("              Unidades: %d\n", produtos->und);
+    printf("              Preço(Und): %f\n", produtos->preco);
+	  printf("///                                                                       ///\n");
+	  printf("/////////////////////////////////////////////////////////////////////////////\n");
+	  printf("\n");
+  }
 }
 
 
@@ -99,6 +196,26 @@ void salvaEstoque(Estoque* produtos) {
   }
   fwrite(produtos, sizeof(Estoque), 1, fp);
   fclose(fp);
+}
+
+
+Estoque* buscarProd(char* cod) {
+	FILE* fp;
+	Estoque* produtos;
+
+	produtos = (Estoque*) malloc(sizeof(Estoque));
+	fp = fopen("produtos.dat", "rb");
+	if (fp == NULL) {
+		printf("Não foi possível encontrar o produto solicitado...");
+	}
+	while(fread(produtos, sizeof(Estoque), 1, fp)) {
+		if ((strcmp(produtos->cod, cod) == 0) && (produtos->status == 1)) {
+			fclose(fp);
+			return produtos;
+		}
+	}
+	fclose(fp);
+	return NULL;
 }
 
 
@@ -118,7 +235,7 @@ void listarEstoque(void){
 	produtos = (Estoque*) malloc(sizeof(Estoque));
 	while(fread(produtos, sizeof(Estoque), 1, fp)) {
 		if (produtos->status == '1') {
-			telaExibeEstoque(produtos);
+			exibirProd(produtos);
 		}
 	}
 	fclose(fp);
@@ -126,4 +243,30 @@ void listarEstoque(void){
 	printf("\nPressione enter para voltar");
 
 	getchar();
+}
+
+
+void regravarProd(Estoque* produtos) {
+	int achou;
+	FILE* fp;
+	Estoque* prodLido;
+
+	prodLido = (Estoque*) malloc(sizeof(Estoque));
+	fp = fopen("produtos.dat", "r+b");
+	if (fp == NULL) {
+		printf("Não foi possível encontrar o produto solicitado...");
+    printf("\n\nTecle ENTER para continuar!\n\n");
+	  getchar();
+    exit(1);
+	}
+	achou = 0;
+	while(fread(prodLido, sizeof(Estoque), 1, fp) && !achou) {
+		if (strcmp(prodLido->cod, produtos->cod) == 0) {
+			achou = 1;
+			fseek(fp, -1*sizeof(Estoque), SEEK_CUR);
+      fwrite(produtos, sizeof(Estoque), 1, fp);
+		}
+	}
+	fclose(fp);
+	free(prodLido);
 }
