@@ -281,7 +281,7 @@ void listarEstoque(void){
 	printf("========================== \n");
 	produtos = (Estoque*) malloc(sizeof(Estoque));
 	while(fread(produtos, sizeof(Estoque), 1, fp)) {
-		if (produtos->status == '1') {
+		if (produtos->status == 1) {
 			exibirProd(produtos);
 		}
 	}

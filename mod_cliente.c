@@ -299,7 +299,7 @@ void listarCliente(void){
 	printf("========================== \n");
 	clt = (Cliente*) malloc(sizeof(Cliente));
 	while(fread(clt, sizeof(Cliente), 1, fp)) {
-		if (clt->status == '1') {
+		if (clt->status == 1) {
 			exibirCliente(clt);
 		}
 	}
