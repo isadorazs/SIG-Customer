@@ -130,7 +130,7 @@ Estoque* telaRegProd(void) {
   getchar();
 	printf("///           Qual o preço(R$):                                           ///\n");
   scanf("%f", &produtos->preco);
-  getchar();
+  produtos->status = True;
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
@@ -225,6 +225,8 @@ void exibirProd(Estoque* produtos){
   printf("              Código: %s\n", produtos->cod);
   printf("              Unidades: %d\n", produtos->und);
   printf("              Preço(Und): %.2f\n", produtos->preco);
+  printf("              Status: %d\n", produtos->status);
+  printf("///");
   printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
