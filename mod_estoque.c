@@ -196,7 +196,6 @@ char* telaExcProd(void) {
   char *cod;
   cod = (char*) malloc(5*sizeof(char));
   
-  system("clear || cls");
 	printf("\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                       ///\n");
