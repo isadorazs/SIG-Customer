@@ -238,12 +238,6 @@ void exibirCliente(Cliente* clt){
   printf("              CPF: %s\n", clt->cpf);
   printf("              Celular: %d\n", clt->celular);
   printf("              Data de Nascimento: %d/%d/%d\n", clt->dd, clt->mm, clt->aa);
-  printf("              Dívida: %.2f\n", clt->precoPag);
-  printf("              Forma de Pagamento: %s\n", clt->tipoPag);
-  printf("              Prazo(meses): %d\n", clt->prazo);
-  printf("              Status: %d\n", clt->status);
-  printf("///");
-  printf("///                                                                       ///\n");
   printf("/////////////////////////////////////////////////////////////////////////////\n");
   printf("\n");
   printf("\n\nTecle ENTER para continuar!\n\n");

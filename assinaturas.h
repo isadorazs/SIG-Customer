@@ -39,6 +39,16 @@ struct estoque{
   int status;  
 };
 
+struct pagamento{
+  float pagTotal;
+  char cpf[12];
+  char tipoPag[13];
+  int meses;
+  float quantPag;
+  int status;  
+};
+
+
 
 char menuPrincipal(void);
 
@@ -67,9 +77,12 @@ Estoque* telaInfoVenda(void);
 
 char menuPagamento(void);
 void regPag(void);
+void salvaPag(Pagamento*);
+void exibirPag(Pagamento*);
+void listarPag(void);
 void editPag(void);
 char* telaRegPag(void);
-Cliente* telaInfoPag(void);
+Pagamento* telaInfoPag(void);
 char* telaEditPag(void);
 
 

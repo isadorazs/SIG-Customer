@@ -13,6 +13,7 @@ char menuPagamento(void) {
 	printf("///                                                                       ///\n");
 	printf("///           1. Cadastrar uma nova transação                             ///\n");
 	printf("///           2. Editar os dados de uma transação                         ///\n");
+	printf("///           3. Listar Transações                        ///\n");
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
@@ -29,6 +30,9 @@ char menuPagamento(void) {
       case '2':
         editPag();
         break;
+      case '3':
+        listarPag();
+        break;
     }
   printf("\n");
   printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -38,40 +42,27 @@ char menuPagamento(void) {
 
 
 void regPag(void){
-  Cliente* clt;
-	char* cpf;
+  Pagamento *pag;
 
-	cpf = telaRegPag();
-	clt = buscarCliente(cpf);
-	if (clt == NULL) {
-    	printf("\n\nCliente não encontrado!\n\n");
-      printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-	    getchar();
- }else {
-		clt = telaInfoPag();
-		strcpy(clt->cpf, cpf);
-		regravarCliente(clt);
-		free(clt);
-	}
-	free(cpf);
+  pag = telaInfoPag();
+  salvaPag(pag);
+  free(pag);
 }
 
-
 void editPag(void){
-  Cliente* clt;
+  Pagamento* pag;
 	char* cpf;
 
-	cpf = telaRegPag();
-	clt = buscarCliente(cpf);
-	if (clt == NULL) {
+	cpf = telaInfoPag();
+	if (pag == NULL) {
     	printf("\n\nCliente não encontrado!\n\n");
       printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	    getchar();
  }else {
-		clt = telaInfoPag();
-		strcpy(clt->cpf, cpf);
-		regravarCliente(clt);
-		free(clt);
+		pag = telaInfoPag();
+		strcpy(pag->cpf, cpf);
+		regravarCliente(pag);
+		free(pag);
 	}
 	free(cpf);
 }
@@ -103,9 +94,9 @@ char* telaRegPag(void) {
 }
 
 
-Cliente* telaInfoPag(void) {
-  Cliente* clt;
-  clt = (Cliente*) malloc(sizeof(Cliente));
+Pagamento* telaInfoPag(void) {
+  Pagamento *pag;
+  pag = (Pagamento*) malloc(sizeof(Pagamento));
   
   system("clear || cls");
 	printf("\n");
@@ -116,25 +107,92 @@ Cliente* telaInfoPag(void) {
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Total a pagar:                                              ///\n");
-  scanf("%f", &clt->precoPag);
+  scanf("%f", &pag->pagTotal);
   getchar();
+ do {
+	  printf("///           CPF (apenas números):                                       ///\n");
+	  scanf("%[^\n]", pag->cpf);
+    getchar();
+  } while (!validarCPF(pag->cpf));
 	printf("///           Forma de pagamento(à vista ou a prazo):                     ///\n");
-  scanf(" %12[^\n]", clt->tipoPag);
+  scanf(" %12[^\n]", pag->tipoPag);
   getchar();
 	printf("///           Prazo(meses):                                               ///\n");
-  scanf("%d", &clt->prazo);
-  getchar();
+    scanf(" %12[^\n]", pag->meses);
 	printf("///           Quantidade paga:                                            ///\n");
-  scanf("%f", &clt->qntPag);
+  scanf("%f", &pag->quantPag);
   getchar();
+  pag->status = True;
+	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
 	printf("\n");
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
-  return clt;
+  return pag;
 }
+
+void salvaPag(Pagamento* pag) {
+  FILE* fp;
+  fp = fopen("pagamento.dat", "ab");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+  fwrite(pag, sizeof(Pagamento), 1, fp);
+  fclose(fp);
+}
+
+void listarPag(void){
+	FILE* fp;
+	Pagamento* pag;
+	fp = fopen("pagamento.dat", "rb");
+	if (fp == NULL) {
+		printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+		printf("Não é possível continuar o programa...\n");
+		exit(1);
+	}
+	printf("\n\n");
+	printf("========================== \n");
+	printf("==  Lista de cadastros  ==\n");
+	printf("========================== \n");
+	pag = (Pagamento*) malloc(sizeof(Pagamento));
+	while(fread(pag, sizeof(Pagamento), 1, fp)) {
+		if (pag->status == 1) {
+			exibirPag(pag);
+		}
+	}
+	fclose(fp);
+	free(pag);
+	printf("\nPressione enter para voltar");
+
+	getchar();
+}
+
+void exibirPag(Pagamento* pag){
+	printf("\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///           = = = = = = = =  Dados do Produto = = = = = =               ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///                                                                       ///\n");
+	printf("              Total: %.2f\n", pag->pagTotal);
+  printf("              CPF: %s\n", pag->cpf);
+  printf("             Tipo de pagamento: %s\n", pag->tipoPag);
+  printf("             Prazo (meses): %.2d\n", pag->meses);
+  printf("              Status: %d\n", pag->status);
+  printf("///");
+  printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+  printf("\n\nTecle ENTER para continuar!\n\n");
+	getchar();
+}
+
+
 
 
 char* telaEditPag (void) {

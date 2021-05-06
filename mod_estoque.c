@@ -122,7 +122,7 @@ Estoque* telaRegProd(void) {
 	printf("///           Qual produto chegou:                                        ///\n");
   scanf(" %20[^\n]", produtos->produto);
   getchar();
-  printf("///           Código:                                                     ///\n");
+  printf("///           Código (5 digitos:                                          ///\n");
   scanf(" %[^\n]", produtos->cod);
   getchar();
 	printf("///           Quantas unidades:                                           ///\n");
