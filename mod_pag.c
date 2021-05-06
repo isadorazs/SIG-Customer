@@ -121,7 +121,6 @@ Pagamento* telaInfoPag(void) {
     scanf("%d", &pag->meses);
 	printf("///           Quantidade paga:                                            ///\n");
   scanf("%f", &pag->quantPag);
-  getchar();
   pag->status = True;
 	printf("///                                                                       ///\n");
 	printf("///                                                                       ///\n");
@@ -183,7 +182,8 @@ void exibirPag(Pagamento* pag){
   printf("              CPF: %s\n", pag->cpf);
   printf("             Tipo de pagamento: %s\n", pag->tipoPag);
   printf("             Prazo (meses): %.2d\n", pag->meses);
-  printf("              Status: %d\n", pag->status);
+  printf("             Quantidade paga: %.2f\n", pag->quantPag);
+  printf("             Status: %d\n", pag->status);
   printf("///");
   printf("///                                                                       ///\n");
 	printf("/////////////////////////////////////////////////////////////////////////////\n");
