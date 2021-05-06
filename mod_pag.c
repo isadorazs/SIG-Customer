@@ -13,7 +13,8 @@ char menuPagamento(void) {
 	printf("///                                                                       ///\n");
 	printf("///           1. Cadastrar uma nova transação                             ///\n");
 	printf("///           2. Editar os dados de uma transação                         ///\n");
-	printf("///           3. Listar Transações                        ///\n");
+	printf("///           3. Pesquisar Transações                        ///\n");
+	printf("///           4. Listar Transações                        ///\n");
 	printf("///           0. Voltar ao menu anterior                                  ///\n");
 	printf("///                                                                       ///\n");
 	printf("///           Escolha a opção desejada:                                   ///\n");
@@ -31,6 +32,9 @@ char menuPagamento(void) {
         editPag();
         break;
       case '3':
+        pesquisarPag();
+        break;
+      case '4':
         listarPag();
         break;
     }
@@ -49,19 +53,31 @@ void regPag(void){
   free(pag);
 }
 
+void pesquisarPag(void){
+  Pagamento* pag;
+	char* cpf;
+
+	cpf = telaPesquisarPag();
+	pag = buscarPag(cpf);
+	exibirPag(pag);
+	free(pag); 
+	free(cpf);
+}
+
+
 void editPag(void){
   Pagamento* pag;
 	char* cpf;
 
 	cpf = telaInfoPag();
-	if (pag == NULL) {
+	if (cpf == NULL) {
     	printf("\n\nCliente não encontrado!\n\n");
       printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	    getchar();
  }else {
-		pag = telaInfoPag();
+		cpf = telaInfoPag();
 		strcpy(pag->cpf, cpf);
-		regravarCliente(pag);
+		regravarPag(pag);
 		free(pag);
 	}
 	free(cpf);
@@ -216,4 +232,68 @@ char* telaEditPag (void) {
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
   return cpf;
+}
+
+char* telaPesquisarPag(void) {
+  char* cpf;
+  cpf = (char*) malloc(12*sizeof(char));
+
+	printf("\n");
+  printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("///                                                                       ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///           = = = = = = = Pesquisar Cliente = = = = = = =               ///\n");
+	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
+	printf("///                                                                       ///\n");
+	printf("///           Informe o CPF do cliente:                                   ///\n");
+  scanf("%[0-9]", cpf);
+  getchar();
+	printf("///                                                                       ///\n");
+	printf("///                                                                       ///\n");
+	printf("/////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");
+  return cpf;
+}
+
+Pagamento* buscarPag(char* cpf) {
+	FILE* fp;
+	Pagamento* pag;
+
+	pag = (Pagamento*) malloc(sizeof(Pagamento));
+	fp = fopen("pagamento.dat", "rb");
+	if (fp == NULL) {
+		printf("Não foi possível encontrar o cliente solicitado...");
+	}
+	while(fread(pag, sizeof(Cliente), 1, fp)) {
+		if ((strcmp(pag->cpf, cpf) == 0) && (pag->status == True)) {
+			fclose(fp);
+			return pag;
+    } 
+	}
+	fclose(fp);
+	return pag;
+}
+
+void regravarPag(Pagamento* pag) {
+	int achou;
+	FILE* fp;
+	Pagamento* pagLido;
+	pagLido = (Pagamento*) malloc(sizeof(Pagamento));
+	fp = fopen("pagamento.dat", "rb");
+	if (fp == NULL) {
+		printf("Não foi possível encontrar o arquivo solicitado...");
+    printf("\n\nTecle ENTER para continuar!\n\n");
+	  getchar();
+    exit(1);
+	}
+	achou = False;
+	while(fread(pagLido, sizeof(Pagamento), 1, fp) && !achou) {
+		if (strcmp(pagLido->cpf, pag->cpf) == 0) {
+			achou = True;
+			fseek(fp, 1*sizeof(Pagamento), SEEK_CUR);
+      fwrite(pag, sizeof(Pagamento), 1, fp);
+		}
+	}
+	fclose(fp);
+	free(pagLido);
 }

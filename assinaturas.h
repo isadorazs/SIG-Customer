@@ -77,13 +77,17 @@ Estoque* telaInfoVenda(void);
 
 char menuPagamento(void);
 void regPag(void);
+void pesquisarPag(void);
+Pagamento* buscarPag(char*);
 void salvaPag(Pagamento*);
 void exibirPag(Pagamento*);
 void listarPag(void);
 void editPag(void);
 char* telaRegPag(void);
+char* telaPesquisarPag(void);
 Pagamento* telaInfoPag(void);
 char* telaEditPag(void);
+void regravarPag(Pagamento*);
 
 
 char menuEstoque(void);
