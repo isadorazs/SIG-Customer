@@ -118,7 +118,7 @@ Pagamento* telaInfoPag(void) {
   scanf(" %12[^\n]", pag->tipoPag);
   getchar();
 	printf("///           Prazo(meses):                                               ///\n");
-    scanf(" %12[^\n]", pag->meses);
+    scanf("%d", &pag->meses);
 	printf("///           Quantidade paga:                                            ///\n");
   scanf("%f", &pag->quantPag);
   getchar();

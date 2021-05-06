@@ -23,7 +23,7 @@ struct cliente{
   int aa;
   float precoPag;
   char tipoPag[11];
-  int prazo;
+  int meses;
   float qntPag;
   int status;
 };
