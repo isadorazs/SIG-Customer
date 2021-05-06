@@ -126,16 +126,9 @@ int validarCPF(char* cpf) {
 }
 
 int validarCod(char* cod) {
-  int tam;
+  char tam;
   tam = strlen(cod);
   if (tam < 4 || tam > 5) {
     return 0;
   }
-  for (int i = 0; i < tam; i++) {
-    if (!ehDigito(cod[i])) {
-      return 0;
-    }
-  }
-  return 1;
 }
-
