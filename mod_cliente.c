@@ -139,8 +139,11 @@ Cliente* telaCadastrarCliente(void){
     printf("\n\n    Ano: ");
     scanf("%d", &clt->aa);
   } while(!(valData(clt->dd, clt->mm, clt->aa)));
+  do{
 	printf("///           Telefone:                                                   ///\n");
-	scanf("%d", &clt->celular);
+	scanf("%s", &clt->celular);
+    getchar();
+  } while (!validarTelefone(&clt->celular));
   printf("///           Endereço:                                                   ///\n");
 	scanf(" %50[^\n]", clt->endereco);
   clt->status = True;

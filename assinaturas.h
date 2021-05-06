@@ -17,7 +17,7 @@ struct cliente{
   char nome[51];
   char endereco[51];
   char cpf[12];
-  int celular;
+  char celular;
   int dd;
   int mm;
   int aa;
@@ -107,3 +107,4 @@ int bissexto(int);
 int ehDigito(char);
 int validarCPF(char*);
 int validarCod(char*);
+int validarTelefone(char*);
