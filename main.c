@@ -139,16 +139,3 @@ int validarCod(char* cod) {
   return 1;
 }
 
-int validarTelefone(char* celular) {
-  int tam;
-  tam = strlen(celular);
-  if (tam < 8 || tam > 9) {
-    return 0;
-  }
-  for (int i = 0; i < tam; i++) {
-    if (!ehDigito(celular[i])) {
-      return 0;
-    }
-  }
-  return 1;
-}
