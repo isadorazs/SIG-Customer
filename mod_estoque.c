@@ -1,4 +1,8 @@
-#include "assinaturas.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "mod_estoque.h"
+#include "validacao.h"
 
 char menuEstoque(void) {
 	char op;

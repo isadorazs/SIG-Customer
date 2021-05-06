@@ -1,4 +1,9 @@
-#include "assinaturas.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "mod_pag.h"
+#include "mod_cliente.h"
+#include "validacao.h"
 
 
 char menuPagamento(void) {
@@ -69,9 +74,10 @@ void editPag(void){
   Pagamento* pag;
 	char* cpf;
 
-	cpf = telaInfoPag();
+	cpf = telaEditPag();
+  pag = buscarPag(cpf);
 	if (cpf == NULL) {
-    	printf("\n\nCliente não encontrado!\n\n");
+    	printf("\n\nPagamento não encontrado!\n\n");
       printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	    getchar();
  }else {
@@ -194,8 +200,8 @@ void exibirPag(Pagamento* pag){
 	printf("///           = = = = = = = =  Dados do Produto = = = = = =               ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = =               ///\n");
 	printf("///                                                                       ///\n");
-	printf("              Total: %.2f\n", pag->pagTotal);
-  printf("              CPF: %s\n", pag->cpf);
+	printf("             Total: %.2f\n", pag->pagTotal);
+  printf("             CPF: %s\n", pag->cpf);
   printf("             Tipo de pagamento: %s\n", pag->tipoPag);
   printf("             Prazo (meses): %.2d\n", pag->meses);
   printf("             Quantidade paga: %.2f\n", pag->quantPag);
@@ -211,7 +217,7 @@ void exibirPag(Pagamento* pag){
 
 
 
-char* telaEditPag (void) {
+char* telaEditPag(void) {
   char* cpf;
   cpf = (char*) malloc(12*sizeof(char));
   system("clear || cls");

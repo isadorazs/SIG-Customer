@@ -1,4 +1,8 @@
-#include "assinaturas.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "mod_cliente.h"
+#include "validacao.h"
 
 void menuCliente(void) {
 	char op='9';
