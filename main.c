@@ -124,11 +124,3 @@ int validarCPF(char* cpf) {
   }
   return 1;
 }
-
-int validarCod(char* cod) {
-  char tam;
-  tam = strlen(cod);
-  if (tam < 4 || tam > 5) {
-    return 0;
-  }
-}
